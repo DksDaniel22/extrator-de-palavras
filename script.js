@@ -1,16 +1,13 @@
-const botaoMostraPalavras = document.querySelector("#botao-palavrachave");
 
-botaoMostraPalavras.addEventListener("click", mostraPalavrasChave);
+const botaoMostraPalavras = document.querySelector("#botao-palavrachave"); 
 
-function mostraPalavrasChave() {
-  const texto = document.querySelector("#entrada-de-texto").value;
+botaoMostraPalavras.addEventListener("click", mostraPalavrasChave); 
 
-  const campoResultado = document.querySelector("#resultado-palavrachave");
-
-  const palavrasChave = processaTexto(texto);
-
-  campoResultado.textContent = palavrasChave.join(", ");
-}
+function mostraPalavrasChave() { const texto = document.querySelector("#entrada-de-texto").value;
+const campoResultado = document.querySelector("#resultado-palavrachave");
+const palavras = texto.split(" ");
+campoResultado.textContent = palavras.join(', ');
+} 
 
 function processaTexto(texto) {
   let palavras = texto.split(/\P{L}+/u);
@@ -41,3 +38,23 @@ function contaFrequencias(palavras) {
 
   return frequencias;
 }
+function tiraPalavrasRuins(palavras) {
+  const PALAVRAS_RUINS = new Set(["para", "uma", "nós"]);
+
+  const palavrasBoas = [];
+
+  for (let palavra of palavras) {
+    if (!PALAVRAS_RUINS.has(palavra) && palavra.length > 2) {
+      palavrasBoas.push(palavra);
+    }
+  }
+
+  return palavrasBoas;
+}
+export const PALAVRAS_RUINS = new Set([
+    "que",
+    "para",
+    "com",
+    "não",
+    // Trecho de código suprimido
+]);
